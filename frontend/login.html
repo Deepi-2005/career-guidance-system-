@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SkillSync</title>
+    <style>
+        body {
+            background: url("one.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .sign {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 40px;
+            width: 350px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .sign:hover{
+            transform: scale(1.05);
+        }
+        .sign input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            transform: scale(1.05);
+        }
+        .sign button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to right, hsl(240, 69%, 13%), #1fdfec);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .sign button:hover {
+            background: linear-gradient(to right, hsl(240, 69%, 13%), #1fdfec); 
+            transform: scale(1.05);
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            color : white;
+            width: 100%;
+        }
+        .sign button {
+            font-size: 16px;
+            padding: 12px;
+        }
+        
+        .pass {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .container p {
+            margin: 5px 0;
+        }
+        
+        .container a {
+            color: #0dd7e6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .container a:hover {
+            text-decoration: underline;
+            color:#ddd;
+        }
+        .success-message {
+            display: none;
+            color: #e0e8e9;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form class="sign">
+        <h1>SIGN IN !!</h1>
+        <br>
+        <b>Username or Email:</b>
+        <input type="text" id="user" placeholder="Enter username or email" required>
+        <br>
+        <b>Password:</b>
+        <input type="password" id="user1" placeholder="Enter Password" required>
+        <br><br>
+        <button type="submit">Sign In</button>
+        <br>
+        <div class="pass">
+            <div class="container">
+              <p id="pass"><a href="forgot.html">Forgot Password</a></p>
+              <p id="up"><a href="signup.html">Don't have an account yet? Sign Up</a></p>
+          </div>
+        <br>
+        <p class="success-message" id="successMessage">Successfully Signed In! Redirecting to home...</p>
+    </form>
+</body>
+<script>
+    document.querySelector(".sign").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        // Show success message
+        document.getElementById("successMessage").style.display = "block";
+
+        // Redirect to home page after 3 seconds
+        setTimeout(function() {
+            window.location.href = "home.html"; // Change this to the actual home page
+        }, 2500);
+    });
+</script>
+</html>

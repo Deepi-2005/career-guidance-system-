@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - SkillSync</title>
+    <style>
+        body {
+            background: url("one.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .reset-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transform: scale(1.05);
+            width: 350px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
+        }
+        .reset-container:hover{
+            transform: scale(1.05);
+        }
+        .reset-container h2 {
+            margin-bottom: 15px;
+            transform: scale(1.05);
+
+        }
+        .reset-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            transform: scale(1.05);
+
+        }
+        .reset-container button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to right, #0a0a38, #1fdfec);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+        .reset-container button:hover {
+            background: linear-gradient(to right, #1fdfec, #0a0a38);
+            transform: scale(1.05);
+        }
+        .success-message {
+            display: none;
+            color: #d8e7e8;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reset-container">
+        <h2>Reset Password</h2>
+        <p>Enter your new password below.</p>
+        <form id="resetPasswordForm">
+            <input type="password" id="newPassword" placeholder="New Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p class="success-message" id="successMessage">Password updated successfully! Redirecting to login...</p>
+    </div>
+    <script>
+        document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+            
+            let newPassword = document.getElementById("newPassword").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (newPassword !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+            
+            // Show success message
+            document.getElementById("successMessage").style.display = "block";
+            
+            // Simulate password update (Replace with actual backend logic later)
+            setTimeout(function() {
+                window.location.href = "login.html"; // Redirect to login page
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

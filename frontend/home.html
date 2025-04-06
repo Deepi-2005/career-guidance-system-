@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync - Home</title>
+    <style>
+        body {
+            background: url("one.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(to right, #0a0a38, #1fdfec);
+            color: white;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border: 3px solid #0a0a38;
+            z-index: 1000;
+        }
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            animation: slideUp 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to SkillSync</h1>
+    </header>
+    <div class="content">
+        <div class="section">
+            <h2>What is SkillSync?</h2>
+            <p>SkillSync is an AI-powered career guidance platform that helps individuals bridge the gap between their skills and industry demands.</p>
+        </div>
+        <div class="section">
+            <h2>How Does It Work?</h2>
+            <p>SkillSync analyzes your resume and job requirements using NLP and machine learning, providing personalized recommendations to enhance your career prospects.</p>
+        </div>
+        <div class="section">
+            <h2>Purpose of SkillSync</h2>
+            <p>Our goal is to empower job seekers by identifying skill gaps and offering curated learning resources to help them achieve their career aspirations.</p>
+        </div>
+    </div>
+</body>
+</html>
