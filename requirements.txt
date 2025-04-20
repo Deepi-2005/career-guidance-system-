@@ -11,3 +11,7 @@ youtube-dl
 nltk
 pdfminer3
 spacy==2.3.5
+scikit-learn
+requests
+beautifulsoup4
+duckduckgo-search  # optional, for clean search

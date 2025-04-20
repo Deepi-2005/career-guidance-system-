@@ -1,17 +1,15 @@
 import streamlit as st
 import psycopg2
 import hashlib
-import json
-from streamlit.components.v1 import html
+from modules.dashboard import show_dashboard  # Create this file for Dashboard page
 
 # Database connection details
 DB_NAME = "skillsync"
 DB_USER = "postgres"
-DB_PASSWORD = "123456789"  # Replace with your actual password
+DB_PASSWORD = "123456789"
 DB_HOST = "localhost"
 DB_PORT = "5432"
 
-# Function to connect to PostgreSQL
 def connect_db():
     return psycopg2.connect(
         dbname=DB_NAME,
@@ -21,13 +19,11 @@ def connect_db():
         port=DB_PORT
     )
 
-# Function to verify user login
 def verify_user(username, password):
     try:
         conn = connect_db()
         cursor = conn.cursor()
 
-        # Hash the entered password to match stored passwords
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
         query = "SELECT * FROM users WHERE username = %s AND password = %s"
@@ -37,42 +33,30 @@ def verify_user(username, password):
         cursor.close()
         conn.close()
 
-        return user is not None  # Returns True if user exists, False otherwise
-
+        return user is not None
     except Exception as e:
-        return {"message": f"Database error: {e}"}
+        st.error(f"Error: {e}")
+        return False
 
-# Streamlit Login Page
 def show_login():
     st.title("Login Page")
 
-    # Load HTML
-    with open("frontend/login.html", "r", encoding="utf-8") as file:
-        login_html = file.read()
+    if 'logged_in' not in st.session_state:
+        st.session_state.logged_in = False
 
-    # Embed HTML
-    html(login_html, height=700, scrolling=True)
+    if not st.session_state.logged_in:
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
 
-    # Handle login request
-    def handle_login():
-        try:
-            # Read JSON data from frontend
-            request_data = json.loads(st.experimental_get_query_params().get("data", "{}"))
-            username = request_data.get("username")
-            password = request_data.get("password")
-
-            if username and password:
-                if verify_user(username, password):
-                    return json.dumps({"message": "Login successful! ✅"})
-                else:
-                    return json.dumps({"message": "Invalid username or password ❌"})
+        if st.button("Login"):
+            if verify_user(username, password):
+                st.success("Login successful!")
+                st.session_state.logged_in = True
+                st.session_state.username = username  # store username in session
+                st.experimental_rerun()  # refresh page to go to dashboard
             else:
-                return json.dumps({"message": "Please enter both username and password."})
-        except Exception as e:
-            return json.dumps({"message": f"Error processing request: {e}"})
+                st.error("Invalid Username or Password")
 
-    # Check if login request is received
-    if "data" in st.experimental_get_query_params():
-        st.write(handle_login())
-
+    if st.session_state.logged_in:
+        show_dashboard()  # Call your dashboard page here
 

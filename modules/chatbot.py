@@ -1,13 +1,20 @@
 # modules/chatbot.py
+
 import streamlit as st
 from modules.chatlogic import get_bot_response
 
 def process_chatbot_mode():
-    st.title("💬 SkillSync Chatbot")
-    st.write("Ask me anything about job roles, skills, or resumes!")
+   
+    st.title("💬 Chatbot")
+    st.write("Ask me about **jobs**, **internships**, **skills**, or **courses** for any tech role!")
 
-    user_input = st.text_input("You:", key="chat_input")
+    with st.form("chat_form"):
+        user_input = st.text_input("Type your query here:", placeholder="e.g., jobs for data analyst")
+        submitted = st.form_submit_button("Send")
 
-    if user_input:
-        response = get_bot_response(user_input)
-        st.markdown(f"**Bot:** {response}")
+    if submitted and user_input:
+        with st.spinner("Finding the best resources..."):
+            response = get_bot_response(user_input)
+
+        st.markdown("### 📢 Bot Response:")
+        st.markdown(response, unsafe_allow_html=True)

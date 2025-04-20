@@ -226,7 +226,7 @@ def suggest_skills_for_job(desired_job):
         return []
 
 
-'''
+
 def show_pdf(uploaded_file):
     try:
         with open(uploaded_file.name, "rb") as f:
@@ -237,4 +237,3 @@ def show_pdf(uploaded_file):
     pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
-'''
